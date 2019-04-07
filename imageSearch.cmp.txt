@@ -1,0 +1,59 @@
+<aura:component controller="PictureController">
+    <aura:attribute name="newdoc" type="Document" />
+    <aura:attribute name="oldselect" type="Object" />
+    <aura:attribute name="placeholderimage" type="String" />
+    <aura:attribute name="tempimage" type="String"/>
+    <aura:attribute name="documents" type="Document[]"/>
+    <aura:attribute name="maindoc" type="Document[]"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <!-- ADD BUTTON FOR UPLOAD FILES-->
+    <!-- Не знаю как реализовать lightning:input в виде кнопки из образца-->
+    
+<div class="slds-p-bottom_x-large slds-align_absolute-center slds-form-element__control slds-m-top_xx-large">
+    <div class="slds-file-selector slds-file-selector_files">
+        <input onchange="{!c.download}" class="slds-file-selector__input slds-assistive-text" accept="image/png, image/jpg, image/gif" type="file" id="file-upload-input-01" aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+        <label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label">
+          <span class="slds-text-heading_large slds-file-selector__button slds-button slds-button_brand">
+            Upload
+          </span>
+        </label>
+  </div>
+</div>
+    
+    <!--Add input area for search-->
+
+
+<div class="slds-form-element slds-align_absolute-center">
+<span class = "slds-p-right_medium slds-text-heading_medium">Search </span>
+  <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right ">
+   
+    <input onkeyup="{!c.search}" id="text-input-id-1"  class="slds-input slds-text-heading_medium" type="text"/>
+  </div>
+</div>   
+    
+<!--Add area for pictures-->
+    
+    <lightning:layout aura:id="qerik" multipleRows="true" class="listview area-list slds-m-top_large slds-scrollable_y">
+      <aura:iteration items="{!v.maindoc}" var="item">
+        <lightning:layoutItem aura:id="imaga" class="slds-m-around_xxx-small slds-p-around_xxx-small" >
+            <div class="one-image" onclick="{!c.selectImage}" id="azaza">
+	<img class="slds-align_absolute-center" src="{!'https://brave-panda-w36zb6-dev-ed--c.documentforce.com/servlet/servlet.FileDownload?file='+item.Id}" style="height:80px"/>
+	<p class="slds-align_absolute-center">{!item.Name}</p>
+          </div>     
+     	</lightning:layoutItem>
+    </aura:iteration>
+     
+</lightning:layout>
+    
+    <!--Add button and placeholder -->
+    
+<lightning:button class="slds-size_1-of-5 slds-m-top_large slds-align_absolute-center slds-text-heading_large" variant="brand" label="INSERT IMAGE" title="INSERT IMAGE" onclick="{! c.loadPlaceholder }" />
+<p class="slds-m-top_large slds-align_absolute-center slds-text-heading_large">Placeholder for your image:</p>    
+
+    <div class="slds-m-top_large slds-align_absolute-center" style="border: 4px solid #0070d3;height:7rem;width:7rem; background-color:#808080;"> 
+  <img class="holder" src="{!v.placeholderimage}"/>
+</div>
+    
+   </aura:component>
