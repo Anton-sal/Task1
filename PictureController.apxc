@@ -2,18 +2,25 @@ public with sharing class PictureController {
     @AuraEnabled
     public static List<Document> getImages() {
         
-    List<Document> documents = [SELECT Name, Id FROM Document WHERE Folder.Name like 'Pictures'];  
+    List<Document> documents = [SELECT Name, Id, Body FROM Document WHERE Folder.Name like 'Pictures'];  
     
-        for (Document doc:documents) {
-            String oldName = doc.Name;
-            doc.Name = oldName.substringBefore('.');
-        }
     return documents;
     }
     
     @AuraEnabled
-    public static Document insertImages(Document newdoc) {
-            
+    public static Document insertImages (String name, String type, String body) {
+        Document newdoc = new Document();
+        System.debug(type);
+        newdoc.Name = name;
+        newdoc.Type = type;
+        
+        //String mybody = EncodingUtil.urlDecode(body, 'UTF-8');
+        Blob bodyBlob = EncodingUtil.base64Decode(body);
+        
+        newdoc.Body = bodyBlob;
+        newdoc.FolderId = '00l0o000002apMFAAY';
+        System.debug(newdoc.Type);
+        
         insert newdoc;
         return newdoc;
     }
