@@ -1,5 +1,5 @@
 <aura:component controller="PictureController">
-    <aura:attribute name="newdoc" type="Document" />
+    <aura:attribute name="query" type="String"/>
     <aura:attribute name="oldselect" type="Object" />
     <aura:attribute name="placeholderimage" type="String" />
     <aura:attribute name="tempimage" type="String"/>
@@ -9,7 +9,7 @@
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     
     <!-- ADD BUTTON FOR UPLOAD FILES-->
-    <!-- Íå çíàþ êàê ðåàëèçîâàòü lightning:input â âèäå êíîïêè èç îáðàçöà-->
+    <!-- ÐÐµ Ð·Ð½Ð°ÑŽ ÐºÐ°Ðº Ñ€ÐµÐ°Ð»Ð¸Ð·Ð¾Ð²Ð°Ñ‚ÑŒ lightning:input Ð² Ð²Ð¸Ð´Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¸Ð· Ð¾Ð±Ñ€Ð°Ð·Ñ†Ð°-->
     
 <div class="slds-p-bottom_x-large slds-align_absolute-center slds-form-element__control slds-m-top_xx-large">
     <div class="slds-file-selector slds-file-selector_files">
