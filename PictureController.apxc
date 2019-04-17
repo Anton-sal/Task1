@@ -1,10 +1,9 @@
 public with sharing class PictureController {
+    
     @AuraEnabled
     public static List<Document> getImages() {
-        
-    List<Document> documents = [SELECT Name, Id, Body FROM Document WHERE Folder.Name like 'Pictures'];  
-    
-    return documents;
+        List<Document> documents = [SELECT Name, Id, Body FROM Document WHERE Folder.Name like 'Pictures'];  
+        return documents;
     }
     
     @AuraEnabled
